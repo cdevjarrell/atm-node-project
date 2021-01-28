@@ -110,3 +110,25 @@ function withdraw() {
     withdraw();
   }
 }
+
+// Does the user wish to continue using the ATM?
+function toContinue() {
+  let yesOrNo = parseInt(
+    prompt("Do you want to perform another transation?\n 1. Yes\n 2. No")
+  );
+  if (yesOrNo !== "" && yesOrNo !== null) {
+    if (yesOrNo === 2) {
+      exit();
+    } else {
+      accountOptions();
+    }
+  } else {
+    alert("Please make a valid selection");
+    toContinue();
+  }
+}
+
+// Exit ATM
+function exit() {
+  alert("Thank you for using Mythical Banking");
+}
