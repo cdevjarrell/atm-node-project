@@ -20,7 +20,7 @@ function validatePin(userInput) {
 function accountOptions() {
   let machineFunctions = parseInt(
     prompt(
-      "Hello, User. How can Mythical Banking help you today? \n 1. Inquiry \n 2. Withdrawal \n 3. Deposit \n 4. Exit"
+      "Hello, User. How can Mythical Banking help you today? \n 1. Balance \n 2. Withdrawal \n 3. Deposit \n 4. Exit"
     )
   );
 
@@ -32,7 +32,7 @@ function accountOptions() {
   ) {
     switch (machineFunctions) {
       case 1:
-        inquiry();
+        getBalance();
         break;
       case 2:
         withdrawl();
@@ -54,7 +54,7 @@ function accountOptions() {
 }
 
 // Inquiry function
-function inquiry() {
+function getBalance() {
   alert(`Your current balance is $${currentBalance}`);
   toContinue();
 }
@@ -129,3 +129,14 @@ function toContinue() {
 function exit() {
   alert("Thank you for using Mythical Banking");
 }
+
+//Modulate all functions
+module.exports.pin = accountPinInput;
+module.exports.validate = validatePin;
+module.exports.options = accountOptions;
+module.exports.getBalance = getBalance;
+module.exports.deposit = deposit;
+module.exports.withdraw = withdraw;
+module.exports.continue = toContinue;
+module.exports.exit = exit;
+console.log(module);
