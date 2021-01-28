@@ -28,6 +28,7 @@ function accountOptions() {
   );
 
   if (
+    //Checks for a valid input (numbers). If invalid, will prompt user and restart.
     machineFunctions !== "" &&
     machineFunctions !== null &&
     isNaN(machineFunctions)
@@ -52,5 +53,60 @@ function accountOptions() {
   } else {
     alert("Please make a valid selection.");
     accountOptions();
+  }
+}
+
+// Inquiry function
+function inquiry() {
+  alert(`Your current balance is $${currentBalance}`);
+  toContinue();
+}
+
+// Deposit
+function deposit() {
+  let depositAmount = parseInt(prompt("How much do you want to depsosit?"));
+  if (depositAmount !== "" && depositAmount !== null && !isNaN(depositAmount)) {
+    currentBalance += depositAmount;
+    alert(
+      `You have successfully deposited $${depositAmount}. \n You now have $${currentBalance}`
+    );
+    toContinue();
+  } else {
+    alert("Invalid input! Please enter a number!");
+    deposit();
+  }
+}
+
+// Withdraw
+
+function withdraw() {
+  let withdrawAmount = parseInt(
+    prompt(
+      "How much do you want to withdraw? \n " +
+        "The maximum amount you can withdraw is $500 a day."
+    )
+  );
+  if (
+    withdrawAmount !== "" &&
+    withdrawAmount !== null &&
+    !isNaN(withdrawAmount)
+  ) {
+    if (withdrawAmount <= 500) {
+      if (withdrawAmount <= currentBalance) {
+        currentBalance -= withdrawAmount;
+        alert("Transaction successful!");
+        alert(`Your remaining balance is $${currentBalance}`);
+        toContinue();
+      } else {
+        alert("You do not have sufficient funds!");
+        withdraw();
+      }
+    } else {
+      alert("You cannot withdraw more than $500 a day.");
+      withdraw();
+    }
+  } else {
+    alert("Invalid input! Please enter a number");
+    withdraw();
   }
 }

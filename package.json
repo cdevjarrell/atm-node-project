@@ -1,8 +1,8 @@
 {
-  "name": "atm_node_project",
+  "name": "atm-node-project",
   "version": "1.0.0",
   "description": "",
-  "main": "atm.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
