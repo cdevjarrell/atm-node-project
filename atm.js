@@ -1,16 +1,13 @@
 "use strict";
 
-//Set PIN for the account
-let userPin = 1357;
-
 //Input the valid PIN
 function accountPinInput() {
   let passwordEntry = parseInt(prompt("Please enter your 4 digit PIN."));
-  checkPassword(passwordEntry);
+  validatePin(passwordEntry);
 }
 
 //Check the PIN user entered. If correct, open account type select menu. If incorrect, alert user and reprompt for input.
-function checkPin(userInput) {
+function validatePin(userInput) {
   if (userInput === userPin) {
     accountOptions();
   } else {
