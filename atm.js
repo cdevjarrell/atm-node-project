@@ -67,21 +67,21 @@ function accountOptions() {
 
 // Inquiry function
 function getBalance() {
-  alert(`Your current balance is $${currentBalance}`);
+  console.log(`Your current balance is $${currentBalance}`);
   toContinue();
 }
 
 // Deposit
-function deposit(data) {
+function deposit() {
   let depositAmount = parseInt(prompt("How much do you want to deposit?"));
   if (depositAmount !== "" && depositAmount !== null && !isNaN(depositAmount)) {
     currentBalance += depositAmount;
-    alert(
+    console.log(
       `You have successfully deposited $${depositAmount}. \n You now have $${currentBalance}`
     );
     toContinue();
   } else {
-    alert("Invalid input! Please enter a number!");
+    console.log("Invalid input! Please enter a number!");
     deposit();
   }
 }
@@ -89,12 +89,13 @@ function deposit(data) {
 // Withdraw
 
 function withdraw() {
-  let withdrawAmount = parseInt(
-    prompt(
-      "How much do you want to withdraw? \n " +
-        "The maximum amount you can withdraw is $500 a day."
-    )
+  console.log(
+    "How much do you want to withdraw? \n " +
+      "The maximum amount you can withdraw is $500 a day."
   );
+
+  let withdrawAmount = prompt();
+
   if (
     withdrawAmount !== "" &&
     withdrawAmount !== null &&
@@ -103,28 +104,31 @@ function withdraw() {
     if (withdrawAmount <= 500) {
       if (withdrawAmount <= currentBalance) {
         balance -= withdrawAmount;
-        alert("Transaction successful!");
-        alert(`Your remaining balance is $${currentBalance}`);
+
+        console.log("Transaction successful!");
+        console.log(`Your remaining balance is $${currentBalance}`);
+
         toContinue();
       } else {
-        alert("You do not have sufficient funds!");
+        console.log("You do not have sufficient funds!");
         withdraw();
       }
     } else {
-      alert("You cannot withdraw more than $500 a day.");
+      console.log("You cannot withdraw more than $500 a day.");
       withdraw();
     }
   } else {
-    alert("Invalid input! Please enter a number");
+    console.log("Invalid input! Please enter a number");
     withdraw();
   }
 }
 
 // Does the user wish to continue using the ATM?
 function toContinue() {
-  let yesOrNo = parseInt(
-    prompt("Do you want to perform another transation?\n 1. Yes\n 2. No")
-  );
+  console.log("Do you want to perform another transation?\n 1. Yes\n 2. No");
+
+  let yesOrNo = prompt();
+
   if (yesOrNo !== "" && yesOrNo !== null) {
     if (yesOrNo === 2) {
       exit();
@@ -132,14 +136,14 @@ function toContinue() {
       accountOptions();
     }
   } else {
-    alert("Please make a valid selection");
+    console.log("Please make a valid selection");
     toContinue();
   }
 }
 
 // Exit ATM
 function exit() {
-  alert("Thank you for using Mythical Banking");
+  console.log("Thank you for using Mythical Banking");
 }
 
 //Modulate all functions
