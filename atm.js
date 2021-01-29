@@ -1,27 +1,37 @@
 "use strict";
 
+// import from account.js, and assign the return of the require to a variable, that you will then call your properties and functions from
+const prompt = require("prompt-sync")();
+const account = require("./account");
+const userPin = account.userPin;
+
+const balance = account.balance;
+
+let currentBalance = balance;
+
+let requiredPin = userPin;
+
 //Input the valid PIN
 function accountPinInput() {
-  let passwordEntry = parseInt(prompt("Please enter your 4 digit PIN."));
-  validatePin(passwordEntry);
+  console.log("Please enter your 4 digit PIN");
+  let pinEntry = prompt();
+  validatePin(pinEntry);
 }
 
 //Check the PIN user entered. If correct, open account type select menu. If incorrect, alert user and reprompt for input.
 function validatePin(userInput) {
-  if (userInput === userPin) {
+  if (userInput === requiredPin) {
     accountOptions();
   } else {
-    alert("Incorrect PIN. Please try again.");
+    console.log("Incorrect PIN. Please try again.");
     accountPinInput();
   }
 }
 
 //Menu to choose what to do with account.
 function accountOptions() {
-  let machineFunctions = parseInt(
-    prompt(
-      "Hello, User. How can Mythical Banking help you today? \n 1. Balance \n 2. Withdrawal \n 3. Deposit \n 4. Exit"
-    )
+  let machineFunctions = console.log(
+    "Hello, User. How can Mythical Banking help you today? \n 1. Balance \n 2. Withdrawal \n 3. Deposit \n 4. Exit"
   );
 
   if (
@@ -44,11 +54,11 @@ function accountOptions() {
         exit();
         break;
       default:
-        alert("Please make a valid selection.");
+        console.log("Please make a valid selection.");
         accountOptions();
     }
   } else {
-    alert("Please make a valid selection.");
+    console.log("Please make a valid selection.");
     accountOptions();
   }
 }
@@ -60,8 +70,8 @@ function getBalance() {
 }
 
 // Deposit
-function deposit() {
-  let depositAmount = parseInt(prompt("How much do you want to depsosit?"));
+function deposit(data) {
+  let depositAmount = parseInt(prompt("How much do you want to deposit?"));
   if (depositAmount !== "" && depositAmount !== null && !isNaN(depositAmount)) {
     currentBalance += depositAmount;
     alert(
@@ -90,7 +100,7 @@ function withdraw() {
   ) {
     if (withdrawAmount <= 500) {
       if (withdrawAmount <= currentBalance) {
-        currentBalance -= withdrawAmount;
+        balance -= withdrawAmount;
         alert("Transaction successful!");
         alert(`Your remaining balance is $${currentBalance}`);
         toContinue();
@@ -133,10 +143,8 @@ function exit() {
 //Modulate all functions
 module.exports.pin = accountPinInput;
 module.exports.validate = validatePin;
-module.exports.options = accountOptions;
 module.exports.getBalance = getBalance;
 module.exports.deposit = deposit;
 module.exports.withdraw = withdraw;
-module.exports.continue = toContinue;
+module.exports.toContinue = toContinue;
 module.exports.exit = exit;
-console.log(module);

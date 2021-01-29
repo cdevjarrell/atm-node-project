@@ -1,6 +1,10 @@
 "use strict";
 
 //Set PIN for the account
-let userPin = 1357;
+let userPin = "1357";
 
-let currentBalance = parseInt("$3500");
+//Set balance for the account
+let currentBalance = 3500;
+
+module.exports.userPin = userPin;
+module.exports.balance = currentBalance;
