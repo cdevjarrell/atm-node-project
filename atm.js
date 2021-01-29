@@ -30,15 +30,17 @@ function validatePin(userInput) {
 
 //Menu to choose what to do with account.
 function accountOptions() {
-  let machineFunctions = console.log(
+  console.log(
     "Hello, User. How can Mythical Banking help you today? \n 1. Balance \n 2. Withdrawal \n 3. Deposit \n 4. Exit"
   );
+
+  let machineFunctions = prompt();
 
   if (
     //Checks for a valid input (numbers). If invalid, will prompt user and restart.
     machineFunctions !== "" &&
     machineFunctions !== null &&
-    isNaN(machineFunctions)
+    !isNaN(machineFunctions)
   ) {
     switch (machineFunctions) {
       case 1:
