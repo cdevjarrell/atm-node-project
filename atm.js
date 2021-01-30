@@ -43,16 +43,16 @@ function accountOptions() {
     !isNaN(machineFunctions)
   ) {
     switch (machineFunctions) {
-      case 1:
+      case "1":
         getBalance();
         break;
-      case 2:
-        withdrawl();
+      case "2":
+        withdrawal();
         break;
-      case 3:
+      case "3":
         deposit();
         break;
-      case 4:
+      case "4":
         exit();
         break;
       default:
@@ -73,11 +73,14 @@ function getBalance() {
 
 // Deposit
 function deposit() {
-  let depositAmount = parseInt(prompt("How much do you want to deposit?"));
+  console.log("How much do you want to deposit?");
+
+  let depositAmount = parseFloat(prompt());
+
   if (depositAmount !== "" && depositAmount !== null && !isNaN(depositAmount)) {
     currentBalance += depositAmount;
     console.log(
-      `You have successfully deposited $${depositAmount}. \n You now have $${currentBalance}`
+      `You have successfully deposited $${depositAmount}. \n You now have $${currentBalance}\n`
     );
     toContinue();
   } else {
@@ -88,22 +91,22 @@ function deposit() {
 
 // Withdraw
 
-function withdraw() {
+function withdrawal() {
   console.log(
     "How much do you want to withdraw? \n " +
       "The maximum amount you can withdraw is $500 a day."
   );
 
-  let withdrawAmount = prompt();
+  let withdrawAmount = parseFloat(prompt());
 
   if (
     withdrawAmount !== "" &&
     withdrawAmount !== null &&
     !isNaN(withdrawAmount)
   ) {
-    if (withdrawAmount <= 500) {
+    if (withdrawAmount <= "500") {
       if (withdrawAmount <= currentBalance) {
-        balance -= withdrawAmount;
+        currentBalance -= withdrawAmount; //error 6
 
         console.log("Transaction successful!");
         console.log(`Your remaining balance is $${currentBalance}`);
@@ -111,15 +114,15 @@ function withdraw() {
         toContinue();
       } else {
         console.log("You do not have sufficient funds!");
-        withdraw();
+        withdrawal();
       }
     } else {
       console.log("You cannot withdraw more than $500 a day.");
-      withdraw();
+      withdrawal();
     }
   } else {
     console.log("Invalid input! Please enter a number");
-    withdraw();
+    withdrawal();
   }
 }
 
@@ -151,6 +154,6 @@ module.exports.pin = accountPinInput;
 module.exports.validate = validatePin;
 module.exports.getBalance = getBalance;
 module.exports.deposit = deposit;
-module.exports.withdraw = withdraw;
+module.exports.withdrawal = withdrawal;
 module.exports.toContinue = toContinue;
 module.exports.exit = exit;

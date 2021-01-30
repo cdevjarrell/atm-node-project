@@ -3,7 +3,7 @@
 const prompt = require("prompt-sync")();
 const atm = require("./atm");
 
-console.log("Welcome to Mythical Banking! Please enter your 4 digit PIN!");
+console.log("Welcome to Mythical Banking!");
 
 function runATM() {
   atm.pin();
