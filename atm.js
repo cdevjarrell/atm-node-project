@@ -75,7 +75,7 @@ function getBalance() {
 function deposit() {
   console.log("How much do you want to deposit?");
 
-  let depositAmount = parseFloat(prompt());
+  let depositAmount = parseFloat(Math.floor(prompt()));
 
   if (depositAmount !== "" && depositAmount !== null && !isNaN(depositAmount)) {
     currentBalance += depositAmount;
@@ -97,7 +97,7 @@ function withdrawal() {
       "The maximum amount you can withdraw is $500 a day."
   );
 
-  let withdrawAmount = parseFloat(prompt());
+  let withdrawAmount = parseFloat(Math.floor(prompt()));
 
   if (
     withdrawAmount !== "" &&
