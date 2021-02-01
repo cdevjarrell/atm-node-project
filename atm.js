@@ -77,7 +77,12 @@ function deposit() {
 
   let depositAmount = parseFloat(Math.floor(prompt()));
 
-  if (depositAmount !== "" && depositAmount !== null && !isNaN(depositAmount)) {
+  if (
+    depositAmount !== "" &&
+    depositAmount !== null &&
+    !isNaN(depositAmount) &&
+    depositAmount > 0
+  ) {
     currentBalance += depositAmount;
     console.log(
       `You have successfully deposited $${depositAmount}. \n You now have $${currentBalance}\n`
@@ -105,7 +110,7 @@ function withdrawal() {
     !isNaN(withdrawAmount)
   ) {
     if (withdrawAmount <= "500") {
-      if (withdrawAmount <= currentBalance) {
+      if (withdrawAmount <= currentBalance && withdrawAmount > 0) {
         currentBalance -= withdrawAmount; //error 6
 
         console.log("Transaction successful!");
